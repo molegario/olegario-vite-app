@@ -1,26 +1,11 @@
-import { useCallback } from 'react';
+import { Link } from 'react-router-dom'
 import classes from './MainHeader.module.scss';
 import {
   MdPostAdd,
   MdMessage
 } from 'react-icons/md'
 
-interface MainHeaderProps {
-  onAddClick: ()=>void;
-}
-
-function MainHeader ({
-  onAddClick
-}:MainHeaderProps) {
-
-  const onAddBtnClick = useCallback(
-    (evt: { preventDefault: () => void; })=>{
-      evt.preventDefault();
-      onAddClick();
-    },
-    [onAddClick]
-  );
-
+function MainHeader () {
   return <header className={classes.header}>
     <h1
       className={classes.logo}
@@ -29,13 +14,14 @@ function MainHeader ({
       React Poster
     </h1>
     <p>
-      <button
+      <Link
+        to='/create-post'
         className={classes.button}
-        onClick={onAddBtnClick}
+        // onClick={onAddBtnClick}
       >
         <MdPostAdd size={18} />
         New Post
-      </button>
+      </Link>
     </p>
   </header>;
 }

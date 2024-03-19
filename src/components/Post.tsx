@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classes from './Post.module.scss';
+import { useCallback } from 'react';
 
 export interface PostProps {
   id: string;
@@ -12,8 +13,17 @@ function Post({
   body,
   id,
 }:PostProps) {
-  return <li className={classes.post}>
-    <p className={classes.author}><Link to={`/${id}`}>{author}</Link></p>
+  const navigate = useNavigate();
+
+  const handleClick = useCallback(
+    () => {
+      navigate(`/${id}`);
+    },
+    [navigate, id]
+  );
+
+  return <li className={classes.post} onClick={handleClick}>
+    <p className={classes.author}>{author}</p>
     <p className={classes.text}>{body}</p>
   </li>
 }

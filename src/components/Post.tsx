@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import classes from './Post.module.scss';
 import { useCallback } from 'react';
 
@@ -6,20 +6,20 @@ export interface PostProps {
   id: string;
   author: string;
   body: string;
+  navigationHandler: (id:string)=>void
 }
 
 function Post({
   author,
   body,
   id,
+  navigationHandler
 }:PostProps) {
-  const navigate = useNavigate();
-
   const handleClick = useCallback(
     () => {
-      navigate(`/${id}`);
+      navigationHandler(id);
     },
-    [navigate, id]
+    [navigationHandler, id]
   );
 
   return <li className={classes.post} onClick={handleClick}>

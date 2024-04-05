@@ -2,18 +2,21 @@ import classes from "./NewPost.module.scss";
 import classNames from "classnames";
 import Modal from "../components/Modal";
 import { Link, Form, ActionFunctionArgs, redirect } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 // import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 
 function NewPost() {
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmitClick = useCallback(
-    ()=>{
-      setIsProcessing(true);
-    },
-    [setIsProcessing]
-  );
+  // const handleSubmitClick = useCallback(
+  //   ()=>{
+  //     setIsProcessing(true);
+  //   },
+  //   [setIsProcessing]
+  // );
+  function handleSubmitClick() {
+    setIsProcessing(true); //resets because action redirects away
+  } 
 
   return (
     <Modal>
